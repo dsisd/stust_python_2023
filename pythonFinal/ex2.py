@@ -1,3 +1,4 @@
+# 員工類別
 class Employee:
     # 構造函數，初始化員工屬性
     def __init__(self, emp_id, emp_name, emp_salary, emp_department):
@@ -36,29 +37,34 @@ class Drink:
 
 # 冷飲的子類
 class Cold(Drink):
-    def __init__(self, name, field):
-        super().__init__(name)  # 使用名字初始化飲料對象。
+    def __init__(self, drinks_id, drinks_price, name, field, temperature):
+        super().__init__(drinks_id, drinks_price)  # 使用飲料ID和價格初始化飲料對象。
         self._field = field
+        self._temperature = temperature
+        self._name = name
 
     @property
     def cold_field(self):
         return self._field
 
+    @property
+    def cold_temperature(self):
+        return self._temperature
+
+    @property
+    def cold_name(self):
+        return self._name
+
     def practice(self):
         print("冷飲")
 
-# 熱飲的子類
-class Hot(Drink):
-    def __init__(self, name, field):
-        super().__init__(name)  # 使用名字初始化飲料對象。
-        self._field = field
-
-    @property
-    def hot_field(self):
-        return self._field
-
-    def practice(self):
-        print("熱飲")
+    def describe(self):
+        print(f"飲料ID: {self.drinks_id}")
+        print(f"飲料名稱: {self.cold_name}")
+        print(f"飲料價格: ${self.drinks_price}")
+        print(f"飲料類別: {self.practice()}")
+        print(f"飲料製作區域: {self.cold_field}")
+        print(f"飲料溫度: {self.cold_temperature} °C")
 
 # 員工的示例數據
 employee1 = Employee("E7876", "ADAMS", 50000, "櫃台")
@@ -73,3 +79,7 @@ employee1.print_employee_details()
 # 根據總工作時間計算薪水的示例
 total_salary_employee2 = employee2.calculate_emp_salary(55)
 print(f"{employee2.emp_name}的總薪水: ${total_salary_employee2}")
+
+# 創建冷飲的示例
+cold_drink1 = Cold("D001", 5.99, "Iced Coffee", "Coffee Bar", 4)
+cold_drink1.describe()
